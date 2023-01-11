@@ -70,6 +70,8 @@ public class TxTtest02 {
 		} catch (SQLException e) {
 			conn.rollback();
 			e.printStackTrace();
+		} finally {
+			conn.setAutoCommit(true);
 		}
 	}
 }
