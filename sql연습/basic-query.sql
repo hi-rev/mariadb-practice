@@ -45,7 +45,7 @@ update pet
 delete from pet where name = '성타니';
 
 -- load data
-load data local infile 'd:\pet.txt' into table pet;
+load data local infile 'c:\pet.txt' into table pet;
 
 -- select 연습
 select name, species
