@@ -8,7 +8,7 @@ import bookshop.vo.AuthorVo;
 public class AuthorDaoTest {
 
 	public static void main(String[] args) {
-//		testInsert();
+		testInsert();
 		testFindAll();
 	}
 
@@ -43,7 +43,7 @@ public class AuthorDaoTest {
 	
 	private static void testFindAll() {
 		List<AuthorVo> list = new AuthorDao().findAll();
-		for (Author vo: list) {
+		for (AuthorVo vo: list) {
 			System.out.println(vo);
 		}
 	}

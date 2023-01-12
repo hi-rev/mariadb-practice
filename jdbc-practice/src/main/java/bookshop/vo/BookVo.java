@@ -3,8 +3,8 @@ package bookshop.vo;
 public class BookVo {
 	private long no;
 	private String rent;
-	private long AuthorNo;
 	private String title;
+	private long AuthorNo;
 	private String AuthorName;
 	
 	public Long getNo() {

@@ -1,12 +1,13 @@
 package bookshop.vo;
 
 public class AuthorVo {
-	private int no;
+	private Long no;
 	private String name;
-	public int getNo() {
+	
+	public Long getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(Long no) {
 		this.no = no;
 	}
 	public String getName() {
