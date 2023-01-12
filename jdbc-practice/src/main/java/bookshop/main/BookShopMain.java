@@ -14,7 +14,6 @@ public class BookShopMain {
 			
 			Scanner sc = new Scanner(System.in);
 			System.out.print("대여 하고 싶은 책의 번호를 입력하세요:");
-			int num = sc.nextInt();
 			Long no = sc.nextLong();
 			sc.close();
 			
@@ -22,7 +21,7 @@ public class BookShopMain {
 			vo.setNo(no);
 			vo.setRent("Y");
 			
-			new BookDao().update();
+			new BookDao().update(vo);
 		
 			displayBookInfo();
 		}
@@ -30,5 +29,17 @@ public class BookShopMain {
 
 	private static void displayBookInfo() {
 		List<BookVo> list = new BookDao().findAll();
+		
+		for(BookVo vo : list) {
+			String s;
+			if ("Y".equals(vo.getRent())) {
+				s = "대여중";
+			} else {
+				s = "재고 있음";
+			}
+			
+			System.out.println("책 번호: " + vo.getNo() + " 제목: " + vo.getTitle() + " 작가: " + vo.getAuthorName()
+					+ " 대여유무: " + s);
+		}
 	}
 }
