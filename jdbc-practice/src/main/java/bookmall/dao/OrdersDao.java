@@ -1,5 +1,5 @@
 package bookmall.dao;
 
-public class OrderDao {
+public class OrdersDao {
 
 }
