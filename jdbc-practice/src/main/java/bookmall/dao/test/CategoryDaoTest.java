@@ -17,18 +17,6 @@ public class CategoryDaoTest {
 		CategoryDao dao = new CategoryDao();
 		
 		vo = new CategoryVo();
-		vo.setCategoryName("소설");
-		dao.insert(vo);
-		
-		vo = new CategoryVo();
-		vo.setCategoryName("수필");
-		dao.insert(vo);
-		
-		vo = new CategoryVo();
-		vo.setCategoryName("컴퓨터/IT");
-		dao.insert(vo);
-		
-		vo = new CategoryVo();
 		vo.setCategoryName("인문");
 		dao.insert(vo);
 		
@@ -37,7 +25,7 @@ public class CategoryDaoTest {
 		dao.insert(vo);
 		
 		vo = new CategoryVo();
-		vo.setCategoryName("예술");
+		vo.setCategoryName("컴퓨터/IT");
 		dao.insert(vo);
 	}
 	
