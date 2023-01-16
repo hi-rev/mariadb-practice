@@ -6,10 +6,12 @@ import bookmall.dao.BookDao;
 import bookmall.dao.CartDao;
 import bookmall.dao.CategoryDao;
 import bookmall.dao.MemberDao;
+import bookmall.dao.OrdersDao;
 import bookmall.vo.BookVo;
 import bookmall.vo.CartVo;
 import bookmall.vo.CategoryVo;
 import bookmall.vo.MemberVo;
+import bookmall.vo.OrdersVo;
 
 public class BookMall {
 
@@ -28,6 +30,7 @@ public class BookMall {
 		displayCartInfo();
 		
 		System.out.println("## 주문");
+		displayOrdersInfo();
 		
 		System.out.println("## 주문 도서 리스트");
 	}
@@ -62,6 +65,14 @@ public class BookMall {
 		for (CartVo vo: list) {
 			System.out.println("주문 고객: " + vo.getMemberName() + " / 도서 제목: " + vo.getBookName() 
 						+ " / 수량: " + vo.getCount() + " / 가격: " + vo.getSumPrice());
+		}
+	}
+	
+	private static void displayOrdersInfo() {
+		List<OrdersVo> list = new OrdersDao().findAll();
+		for (OrdersVo vo: list) {
+			System.out.println("주문 번호: " + vo.getOrderNum() + " / 이름: " + vo.getName() + " / 이메일: " + vo.getEmail() + " / 결재금액: " 
+					+ vo.getOrderPrice() + " / 배송지: " + vo.getAddress());
 		}
 	}
 }
