@@ -4,11 +4,14 @@ public class OrdersVo {
 	private Long no;
 	private String orderNum;
 	private Long orderPrice;
-	private String address;
 	private String name;
 	private String email;
+	private String address;
+	
+	private Long orderBookNo;
 	private Long bookNo;
 	private String bookName;
+	private Long count;
 	public String getName() {
 		return name;
 	}
@@ -64,12 +67,21 @@ public class OrdersVo {
 	public void setMemberNo(Long memberNo) {
 		this.memberNo = memberNo;
 	}
-	
+	public Long getCount() {
+		return count;
+	}
+	public void setCount(Long count) {
+		this.count = count;
+	}
+	public Long getOrderBookNo() {
+		return orderBookNo;
+	}
+	public void setOrderBookNo(Long orderBookNo) {
+		this.orderBookNo = orderBookNo;
+	}	
 	@Override
 	public String toString() {
 		return "OrdersVo [no=" + no + ", orderNum=" + orderNum + ", orderPrice=" + orderPrice + ", address=" + address
-				+ ", name=" + name + ", email=" + email + ", bookNo=" + bookNo + ", bookName=" + bookName
-				+ ", memberNo=" + memberNo + "]";
+				+ ", name=" + name + ", email=" + email + "]";
 	}
-	
 }

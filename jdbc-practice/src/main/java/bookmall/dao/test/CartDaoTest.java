@@ -26,7 +26,7 @@ public class CartDaoTest {
 		vo = new CartVo();
 		vo.setMemberNo(2L);
 		vo.setCount(3L);
-		vo.setBookNo(3L);
+		vo.setBookNo(2L);
 		dao.insert(vo);
 	}
 

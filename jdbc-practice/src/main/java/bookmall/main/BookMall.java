@@ -33,6 +33,7 @@ public class BookMall {
 		displayOrdersInfo();
 		
 		System.out.println("## 주문 도서 리스트");
+		displayOrderBookInfo();
 	}
 	
 	private static void displayUserInfo() {
@@ -73,6 +74,13 @@ public class BookMall {
 		for (OrdersVo vo: list) {
 			System.out.println("주문 번호: " + vo.getOrderNum() + " / 이름: " + vo.getName() + " / 이메일: " + vo.getEmail() + " / 결재금액: " 
 					+ vo.getOrderPrice() + " / 배송지: " + vo.getAddress());
+		}
+	}
+	
+	private static void displayOrderBookInfo() {
+		List<OrdersVo> list = new OrdersDao().findOrdersAll();
+		for (OrdersVo vo: list) {
+			System.out.println("도서 번호: " + vo.getBookNo() + " / 도서 제목: " + vo.getBookName() + " / 수량: " + vo.getCount());
 		}
 	}
 }

@@ -23,11 +23,9 @@ public class OrdersDao {
 			conn = getConnection();
 			
 			String sql = 
-				"   select orders.no, orders.order_num, orders.order_price, orders.address, member.name, member.email, order_book.book_no, book.book_name" +
-				"     from orders, member, order_book, book" +
-				"    where orders.member_no = member.no and" +
-				"    order_book.book_no = book.no and" +
-				"    order_book.order_no = orders.no;";
+				"   select orders.no, orders.order_num, orders.order_price, orders.address, member.name, member.email" +
+				"     from orders, member" +
+				"    where orders.member_no = member.no;";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -38,8 +36,6 @@ public class OrdersDao {
 				String address = rs.getString(4);
 				String name = rs.getString(5);
 				String email = rs.getString(6);
-				Long bookNo = rs.getLong(7);
-				String bookName = rs.getString(8);
 				
 				OrdersVo vo = new OrdersVo();
 				vo.setNo(no);
@@ -48,8 +44,6 @@ public class OrdersDao {
 				vo.setAddress(address);
 				vo.setName(name);
 				vo.setEmail(email);
-				vo.setBookNo(bookNo);
-				vo.setBookName(bookName);
 				
 				result.add(vo);
 			}
@@ -108,6 +102,61 @@ public class OrdersDao {
 		}
 	}
 	
+	public List<OrdersVo> findOrdersAll() {
+		List<OrdersVo> result = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			
+			String sql = 
+				"   select order_book.no, book.no, book.book_name, order_book.count" +
+				"     from order_book, book, orders" +
+				"    where order_book.book_no = book.no and" +
+				"    orders.no = order_book.order_no;";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Long no = rs.getLong(1);
+				Long bookNo = rs.getLong(2);
+				String bookName = rs.getString(3);
+				Long count = rs.getLong(4);
+				
+				OrdersVo vo = new OrdersVo();
+				vo.setNo(no);
+				vo.setBookNo(bookNo);
+				vo.setBookName(bookName);
+				vo.setCount(count);
+				
+				result.add(vo);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+		
+	}
+	
 	public void insertOrderBook(OrdersVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -115,11 +164,12 @@ public class OrdersDao {
 		try {
 			conn = getConnection();
 			
-			String sql = "insert into order_book(order_no, book_no) values(?, ?)";
+			String sql = "insert into order_book(no, order_no, book_no, count) values(null, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setLong(1, vo.getNo());
+			pstmt.setLong(1, vo.getOrderBookNo());
 			pstmt.setLong(2, vo.getBookNo());
+			pstmt.setLong(3, vo.getCount());
 			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

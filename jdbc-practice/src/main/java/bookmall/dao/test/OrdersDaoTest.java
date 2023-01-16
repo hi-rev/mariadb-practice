@@ -8,7 +8,8 @@ import bookmall.vo.OrdersVo;
 public class OrdersDaoTest {
 
 	public static void main(String[] args) {
-		testInsert();
+//		testInsert();
+//		testInsertOrders();
 		testFindAll();
 	}
 	
@@ -18,16 +19,26 @@ public class OrdersDaoTest {
 		
 		vo = new OrdersVo();
 		vo.setOrderNum("2023-001");
-		vo.setOrderPrice(46000L);
-		vo.setAddress("부산 해운대구");
+		vo.setOrderPrice(57600L);
+		vo.setAddress("부산광역시 수영구 광안해변로100");
 		vo.setMemberNo(1L);
-		vo.setBookNo(1L);
 		dao.insert(vo);
-		vo.setNo(1L);
+	}
+	
+	private static void testInsertOrders() {
+		OrdersVo vo = null;
+		OrdersDao dao = new OrdersDao();
+		
+		vo = new OrdersVo();
+		vo.setOrderBookNo(1L);
+		vo.setBookNo(1L);
+		vo.setCount(2L);
 		dao.insertOrderBook(vo);
 		
-		vo.setNo(1L);
+		vo = new OrdersVo();
+		vo.setOrderBookNo(1L);
 		vo.setBookNo(2L);
+		vo.setCount(1L);
 		dao.insertOrderBook(vo);
 	}
 
