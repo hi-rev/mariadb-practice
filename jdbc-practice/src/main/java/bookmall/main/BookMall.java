@@ -72,7 +72,7 @@ public class BookMall {
 	private static void displayOrdersInfo() {
 		List<OrdersVo> list = new OrdersDao().findAll();
 		for (OrdersVo vo: list) {
-			System.out.println("주문 번호: " + vo.getOrderNum() + " / 이름: " + vo.getName() + " / 이메일: " + vo.getEmail() + " / 결재금액: " 
+			System.out.println("주문 번호: " + vo.getOrderNum() + " / 이름: " + vo.getName() + " / 이메일: " + vo.getEmail() + " / 결제금액: " 
 					+ vo.getOrderPrice() + " / 배송지: " + vo.getAddress());
 		}
 	}
